@@ -1,0 +1,13 @@
+# ========================
+# CONFIGURACIÓN DEL SERVER
+# ========================
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+# ========================
+# Url de la API externa
+# ========================
+pokeapi:
+  base-url: https://pokeapi.co/api/v2

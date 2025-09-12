@@ -20,6 +20,7 @@ import org.springframework.xml.xsd.XsdSchema;
 public class WebServiceConfig {
 
     public static final String SOAP_NAMESPACE = "http://ejemplo.com/soap";
+    public static final String POKEMON_SOAP_NAMESPACE = "http://pokemon.com/soap";
 
     @Bean
     public ServletRegistrationBean<MessageDispatcherServlet> messageDispatcherServlet(ApplicationContext context) {
@@ -42,5 +43,20 @@ public class WebServiceConfig {
     @Bean
     public XsdSchema textSchema() {
         return new SimpleXsdSchema(new ClassPathResource("text.xsd"));
+    }
+
+    @Bean
+    public XsdSchema pokemonSchema() {
+        return new SimpleXsdSchema(new ClassPathResource("pokemon.xsd"));
+    }
+
+    @Bean(name = "pokemon")
+    public DefaultWsdl11Definition defaultWsdl11DefinitionPokemon(XsdSchema pokemonSchema) {
+        DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
+        wsdl11Definition.setPortTypeName("PokemonPort");
+        wsdl11Definition.setLocationUri("/ws");
+        wsdl11Definition.setTargetNamespace(POKEMON_SOAP_NAMESPACE);
+        wsdl11Definition.setSchema(pokemonSchema);
+        return wsdl11Definition;
     }
 }

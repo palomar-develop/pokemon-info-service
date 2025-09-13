@@ -18,7 +18,7 @@ public class AbilitySlot {
 
     @JsonProperty("is_hidden")
     @XmlElement(name = "isHidden")
-    private boolean isHidden;
+    private Boolean isHidden;
     @XmlElement(name = "slot")
-    private int slot;
+    private Integer slot;
 }

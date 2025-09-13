@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class VersionDetail {
-    private int rarity;
+    private Integer rarity;
     private Version version;
 }
 

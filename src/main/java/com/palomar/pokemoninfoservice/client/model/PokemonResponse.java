@@ -9,10 +9,10 @@ public class PokemonResponse {
     private List<AbilitySlot> abilities;
 
     @JsonProperty("base_experience")
-    private int baseExperience;
+    private Integer baseExperience;
     @JsonProperty("held_items")
     private List<HeldItem> heldItems;
-    private int id;
+    private Integer id;
     private String name;
 
     @JsonProperty("location_area_encounters")

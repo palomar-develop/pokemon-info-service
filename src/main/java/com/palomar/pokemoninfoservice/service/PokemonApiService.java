@@ -1,16 +1,17 @@
 package com.palomar.pokemoninfoservice.service;
 
-import com.palomar.pokemoninfoservice.client.external.PokeApiClient;
+import com.palomar.pokemoninfoservice.client.external.PokemonApiClient;
 import com.palomar.pokemoninfoservice.client.model.PokemonResponse;
+import com.palomar.pokemoninfoservice.model.entity.Bitacora;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PokeApiService {
-    private final PokeApiClient pokeApiClient;
+public class PokemonApiService {
+    private final PokemonApiClient pokeApiClient;
 
     @Autowired
-    public PokeApiService(PokeApiClient pokeApiClient) {
+    public PokemonApiService(PokemonApiClient pokeApiClient) {
         this.pokeApiClient = pokeApiClient;
     }
 

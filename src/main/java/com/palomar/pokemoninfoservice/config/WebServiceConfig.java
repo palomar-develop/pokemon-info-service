@@ -1,5 +1,6 @@
 package com.palomar.pokemoninfoservice.config;
 
+import com.palomar.pokemoninfoservice.exception.PokemonNotFoundException;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -10,6 +11,14 @@ import org.springframework.ws.transport.http.MessageDispatcherServlet;
 import org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition;
 import org.springframework.xml.xsd.SimpleXsdSchema;
 import org.springframework.xml.xsd.XsdSchema;
+import org.springframework.ws.soap.server.endpoint.SoapFaultMappingExceptionResolver;
+import org.springframework.ws.soap.SoapFaultDetail;
+import org.springframework.ws.soap.SoapFault;
+import org.springframework.ws.server.EndpointInterceptor;
+import org.springframework.ws.config.annotation.WsConfigurerAdapter;
+
+import java.util.Properties;
+import java.util.List;
 
 /**
  * Autor: josue.palomar
@@ -17,9 +26,8 @@ import org.springframework.xml.xsd.XsdSchema;
  */
 @EnableWs
 @Configuration
-public class WebServiceConfig {
+public class WebServiceConfig extends WsConfigurerAdapter {
 
-    public static final String SOAP_NAMESPACE = "http://ejemplo.com/soap";
     public static final String POKEMON_SOAP_NAMESPACE = "http://pokemon.com/soap";
 
     @Bean
@@ -28,21 +36,6 @@ public class WebServiceConfig {
         servlet.setApplicationContext(context);
         servlet.setTransformWsdlLocations(true);
         return new ServletRegistrationBean<>(servlet, "/ws/*");
-    }
-
-    @Bean(name = "text")
-    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema textSchema) {
-        DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
-        wsdl11Definition.setPortTypeName("TextPort");
-        wsdl11Definition.setLocationUri("/ws");
-        wsdl11Definition.setTargetNamespace(SOAP_NAMESPACE);
-        wsdl11Definition.setSchema(textSchema);
-        return wsdl11Definition;
-    }
-
-    @Bean
-    public XsdSchema textSchema() {
-        return new SimpleXsdSchema(new ClassPathResource("text.xsd"));
     }
 
     @Bean
@@ -58,5 +51,36 @@ public class WebServiceConfig {
         wsdl11Definition.setTargetNamespace(POKEMON_SOAP_NAMESPACE);
         wsdl11Definition.setSchema(pokemonSchema);
         return wsdl11Definition;
+    }
+
+    @Bean
+    public SoapFaultMappingExceptionResolver exceptionResolver() {
+        SoapFaultMappingExceptionResolver resolver = new SoapFaultMappingExceptionResolver() {
+            @Override
+            protected void customizeFault(Object endpoint, Exception ex, SoapFault fault) {
+                if (ex instanceof PokemonNotFoundException) {
+                    SoapFaultDetail detail = fault.addFaultDetail();
+                    detail.addFaultDetailElement(new javax.xml.namespace.QName(POKEMON_SOAP_NAMESPACE, "errorCode"))
+                            .addText("404");
+                    detail.addFaultDetailElement(new javax.xml.namespace.QName(POKEMON_SOAP_NAMESPACE, "errorMessage"))
+                            .addText(ex.getMessage());
+                }
+            }
+        };
+        Properties errorMappings = new Properties();
+        errorMappings.setProperty(PokemonNotFoundException.class.getName(), "SERVER");
+        resolver.setExceptionMappings(errorMappings);
+        resolver.setOrder(1);
+        return resolver;
+    }
+
+    @Bean
+    public EndpointInterceptor soapIpInterceptor() {
+        return new com.palomar.pokemoninfoservice.interceptor.SoapIpInterceptor();
+    }
+
+    @Override
+    public void addInterceptors(List<EndpointInterceptor> interceptors) {
+        interceptors.add(soapIpInterceptor());
     }
 }

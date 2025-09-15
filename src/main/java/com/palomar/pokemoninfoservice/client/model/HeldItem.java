@@ -1,11 +1,19 @@
 package com.palomar.pokemoninfoservice.client.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
-import java.util.List;
 
-@Data
-public class HeldItem {
+import lombok.Getter;
+import lombok.Setter;
+
+import java.io.Serializable;
+import java.util.List;
+/**
+ * Autor: josue.palomar
+ * Fecha de creación: 12/09/25
+ */
+@Getter
+@Setter
+public class HeldItem implements Serializable {
     private Item item;
     @JsonProperty("version_details")
     private List<VersionDetail> versionDetails;

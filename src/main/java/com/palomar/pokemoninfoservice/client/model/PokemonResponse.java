@@ -1,11 +1,20 @@
 package com.palomar.pokemoninfoservice.client.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
-import java.util.List;
+import lombok.Builder;
 
-@Data
-public class PokemonResponse {
+import lombok.Getter;
+import lombok.Setter;
+
+import java.io.Serializable;
+import java.util.List;
+/**
+ * Autor: josue.palomar
+ * Fecha de creación: 12/09/25
+ */
+@Getter
+@Setter
+public class PokemonResponse implements Serializable {
     private List<AbilitySlot> abilities;
 
     @JsonProperty("base_experience")
@@ -18,4 +27,3 @@ public class PokemonResponse {
     @JsonProperty("location_area_encounters")
     private String locationAreaEncounters;
 }
-

@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:15
+    container_name: pokemon_postgres
+    environment:
+      POSTGRES_DB: pokemondb
+      POSTGRES_USER: postgres_user
+      POSTGRES_PASSWORD: tu_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres_user -d pokemondb"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - bancodb_network
+volumes:
+  postgres_data:
+
+networks:
+  bancodb_network:
+    external: true

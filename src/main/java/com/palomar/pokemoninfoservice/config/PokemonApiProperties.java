@@ -1,19 +1,16 @@
 package com.palomar.pokemoninfoservice.config;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ConfigurationProperties(prefix = "pokeapi")
-public class PokeApiProperties {
+@Getter
+@Setter
+public class PokemonApiProperties {
     private String baseUrl;
-
-    public String getBaseUrl() {
-        return baseUrl;
-    }
-
-    public void setBaseUrl(String baseUrl) {
-        this.baseUrl = baseUrl;
-    }
 }
 

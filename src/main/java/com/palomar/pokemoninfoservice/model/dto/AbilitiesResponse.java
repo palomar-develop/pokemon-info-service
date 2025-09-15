@@ -1,8 +1,11 @@
 package com.palomar.pokemoninfoservice.model.dto;
 
-import jakarta.xml.bind.annotation.*;
-import lombok.Data;
 import com.palomar.pokemoninfoservice.client.model.AbilitySlot;
+import jakarta.xml.bind.annotation.*;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -12,8 +15,9 @@ import java.util.List;
 @XmlRootElement(name = "AbilitiesResponse", namespace = "http://pokemon.com/soap")
 @XmlType(name = "AbilitiesResponse", propOrder = {  "abilities" })
 @XmlAccessorType(XmlAccessType.FIELD)
-@Data
-public class AbilitiesResponse {
+@Getter
+@Setter
+public class AbilitiesResponse implements Serializable {
 
     @XmlElement(name = "abilitySlot", namespace = "http://pokemon.com/soap")
     private List<AbilitySlot> abilities;

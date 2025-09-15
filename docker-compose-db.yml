@@ -17,10 +17,10 @@ services:
       timeout: 5s
       retries: 5
     networks:
-      - bancodb_network
+      - pokemon_network
 volumes:
   postgres_data:
 
 networks:
-  bancodb_network:
+  pokemon_network:
     external: true

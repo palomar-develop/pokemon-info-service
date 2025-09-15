@@ -11,8 +11,8 @@ services:
       - "8080:8080"
     restart: on-failure
     networks:
-      - bancodb_network
+      - pokemon_network
 
 networks:
-  bancodb_network:
+  pokemon_network:
     external: true

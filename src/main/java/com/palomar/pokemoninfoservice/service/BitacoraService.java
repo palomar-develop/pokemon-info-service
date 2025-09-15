@@ -7,5 +7,5 @@ import com.palomar.pokemoninfoservice.model.entity.Bitacora;
  * Fecha de creación: 15/09/25
  */
 public interface BitacoraService {
-    Bitacora guardar(Bitacora bitacora);
+    void guardar(Bitacora bitacora);
 }

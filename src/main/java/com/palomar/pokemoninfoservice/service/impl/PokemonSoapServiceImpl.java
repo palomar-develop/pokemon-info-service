@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.palomar.pokemoninfoservice.client.model.PokemonResponse;
 import com.palomar.pokemoninfoservice.model.dto.*;
 import com.palomar.pokemoninfoservice.model.entity.Bitacora;
+import com.palomar.pokemoninfoservice.service.BitacoraService;
+import com.palomar.pokemoninfoservice.service.PokemonApiService;
 import com.palomar.pokemoninfoservice.service.PokemonSoapService;
 import com.palomar.pokemoninfoservice.utils.PokemonServiceConstants;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,8 +24,8 @@ import java.util.function.Function;
 @Slf4j
 public class PokemonSoapServiceImpl implements PokemonSoapService {
 
-    private final PokemonApiServiceImpl pokemonApiService;
-    private final BitacoraServiceImpl bitacoraService;
+    private final PokemonApiService pokemonApiService;
+    private final BitacoraService bitacoraService;
     @Autowired
     private HttpServletRequest httpServletRequest;
 
@@ -32,7 +34,7 @@ public class PokemonSoapServiceImpl implements PokemonSoapService {
 
 
     @Autowired
-    public PokemonSoapServiceImpl(PokemonApiServiceImpl pokemonApiService, BitacoraServiceImpl bitacoraService) {
+    public PokemonSoapServiceImpl(PokemonApiService pokemonApiService, BitacoraService bitacoraService) {
         this.pokemonApiService = pokemonApiService;
         this.bitacoraService = bitacoraService;
     }
@@ -114,8 +116,7 @@ public class PokemonSoapServiceImpl implements PokemonSoapService {
             bitacora.setRequest(objectMapper.writeValueAsString(request));
             bitacora.setResponse(objectMapper.writeValueAsString(response));
         } catch (Exception e) {
-            log.error("Error serializando request: " + e.getMessage());
-            log.error("Error serializando response: " + e.getMessage());
+            log.error("Error serializando: " + e.getMessage());
         }
         bitacoraService.guardar(bitacora);
     }

@@ -24,6 +24,13 @@ public class PokemonApiClientImpl implements PokemonApiClient {
         this.restTemplate = restTemplate;
         this.pokemonApiProperties = pokemonApiProperties;
     }
+    /**
+     * Llama a la API externa para obtener la información del Pokémon por nombre.
+     *
+     * @param name El nombre del Pokémon.
+     * @return La respuesta con la información del Pokémon.
+     * @throws PokemonNotFoundException Si el Pokémon no es encontrado.
+     */
     @Override
     public PokemonResponse getPokemonByName(String name) {
         String url = pokemonApiProperties.getBaseUrl()  + name;

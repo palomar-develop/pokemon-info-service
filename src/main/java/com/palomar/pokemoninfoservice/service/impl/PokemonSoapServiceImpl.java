@@ -38,6 +38,12 @@ public class PokemonSoapServiceImpl implements PokemonSoapService {
         this.pokemonApiService = pokemonApiService;
         this.bitacoraService = bitacoraService;
     }
+    /***
+     * Implementación del método para obtener las habilidades de un Pokémon por su nombre.
+     *
+     * @param request La solicitud que contiene el nombre del Pokémon.
+     * @return La respuesta con las habilidades del Pokémon.
+     */
     @Override
     public AbilitiesResponse getAbilities(AbilitiesRequest request) {
         return procesarConBitacora(PokemonServiceConstants.METHOD_ABILITIES, request, req -> {
@@ -47,6 +53,12 @@ public class PokemonSoapServiceImpl implements PokemonSoapService {
             return response;
         });
     }
+
+    /**
+     * Implementación del método para obtener la experiencia base de un Pokémon por su nombre.
+     * @param request
+     * @return
+     */
     @Override
     public BaseExperienceResponse getBaseExperience(BaseExperienceRequest request) {
         return procesarConBitacora(PokemonServiceConstants.METHOD_BASE_EXPERIENCE, request, req -> {
@@ -56,6 +68,12 @@ public class PokemonSoapServiceImpl implements PokemonSoapService {
             return response;
         });
     }
+
+    /**
+     * Implementación del método para obtener los objetos que sostiene un Pokémon por su nombre.
+     * @param request
+     * @return
+     */
     @Override
     public HeldItemResponse getHeldItem(HeldItemRequest request) {
         return procesarConBitacora(PokemonServiceConstants.METHOD_HELD_ITEM, request, req -> {
@@ -65,6 +83,11 @@ public class PokemonSoapServiceImpl implements PokemonSoapService {
             return response;
         });
     }
+    /**
+     * Implementación del método para obtener las áreas de encuentro de un Pokémon por su nombre.
+     * @param request
+     * @return
+     */
     @Override
     public LocationAreaEncountersResponse getLocationAreaEncounters(LocationAreaEncountersRequest request) {
         return procesarConBitacora(PokemonServiceConstants.METHOD_LOCATION_AREA_ENCOUNTERS, request, req -> {
@@ -74,6 +97,11 @@ public class PokemonSoapServiceImpl implements PokemonSoapService {
             return response;
         });
     }
+    /**
+     * Implementación del método para obtener el nombre de un Pokémon por su nombre.
+     * @param request
+     * @return
+     */
     @Override
     public NameResponse getName(NameRequest request) {
         return procesarConBitacora(PokemonServiceConstants.METHOD_NAME, request, req -> {
@@ -83,6 +111,11 @@ public class PokemonSoapServiceImpl implements PokemonSoapService {
             return response;
         });
     }
+    /**
+     * Implementación del método para obtener el ID de un Pokémon por su nombre.
+     * @param request
+     * @return
+     */
     @Override
     public IdResponse getId(IdRequest request) {
         return procesarConBitacora(PokemonServiceConstants.METHOD_ID, request, req -> {
@@ -94,7 +127,16 @@ public class PokemonSoapServiceImpl implements PokemonSoapService {
     }
 
 
-    // Método genérico para procesar la petición y registrar en bitácora
+    /***
+     * Método genérico para procesar la petición y registrar en bitácora.
+     *
+     * @param metodo   El nombre del método que se está procesando.
+     * @param request  La solicitud entrante.
+     * @param funcion  La función que procesa la solicitud y devuelve la respuesta.
+     * @param <T>      El tipo de la solicitud.
+     * @param <R>      El tipo de la respuesta.
+     * @return La respuesta procesada.
+     */
     private <T, R> R procesarConBitacora(String metodo, T request, Function<T, R> funcion) {
         long start = System.currentTimeMillis();
         R response = funcion.apply(request);
@@ -104,7 +146,15 @@ public class PokemonSoapServiceImpl implements PokemonSoapService {
     }
 
 
-    // Método privado para registrar en bitácora
+
+    /***
+     * Registra los detalles de la petición y respuesta en la bitácora.
+     *
+     * @param metodo         El nombre del método que se está procesando.
+     * @param request        La solicitud entrante.
+     * @param response       La respuesta generada.
+     * @param tiempoPeticion El tiempo que tomó procesar la petición en milisegundos.
+     */
     private void registrarBitacora(String metodo, Object request, Object response, long tiempoPeticion) {
         String clientIp = (String) httpServletRequest.getAttribute("clientIp");
         Bitacora bitacora = new Bitacora();

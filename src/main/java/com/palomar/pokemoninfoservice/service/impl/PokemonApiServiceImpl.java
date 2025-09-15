@@ -14,6 +14,12 @@ public class PokemonApiServiceImpl implements PokemonApiService {
     public PokemonApiServiceImpl(PokemonApiClient pokeApiClient) {
         this.pokeApiClient = pokeApiClient;
     }
+    /**
+     * Llama al cliente para obtener la información del Pokémon por nombre.
+     *
+     * @param name El nombre del Pokémon.
+     * @return La respuesta con la información del Pokémon.
+     */
     @Override
     public PokemonResponse getPokemonByName(String name) {
         return pokeApiClient.getPokemonByName(name);

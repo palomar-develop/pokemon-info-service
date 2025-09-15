@@ -3,6 +3,7 @@ package com.palomar.pokemoninfoservice.service;
 import com.palomar.pokemoninfoservice.client.external.PokemonApiClient;
 import com.palomar.pokemoninfoservice.client.model.PokemonResponse;
 import com.palomar.pokemoninfoservice.exception.PokemonNotFoundException;
+import com.palomar.pokemoninfoservice.service.impl.PokemonApiServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -17,7 +18,7 @@ class PokemonApiServiceTest {
     @Mock
     private PokemonApiClient pokeApiClient;
     @InjectMocks
-    private PokemonApiService pokemonApiService;
+    private PokemonApiServiceImpl pokemonApiService;
 
     @Test
     void getPokemonByName() {

@@ -15,6 +15,7 @@ class PokemonApiPropertiesIntegrationTest {
 
     @Test
     void testBaseUrlMapping() {
+
         assertEquals("https://pokeapi.co/api/v2/pokemon/", properties.getBaseUrl());
     }
 }

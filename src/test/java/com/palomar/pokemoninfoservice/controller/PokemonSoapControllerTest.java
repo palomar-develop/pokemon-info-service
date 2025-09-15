@@ -1,8 +1,7 @@
 package com.palomar.pokemoninfoservice.controller;
 
-import com.palomar.pokemoninfoservice.model.dto.*;
-import com.palomar.pokemoninfoservice.service.PokemonApiService;
 import com.palomar.pokemoninfoservice.exception.PokemonNotFoundException;
+import com.palomar.pokemoninfoservice.model.dto.*;
 import com.palomar.pokemoninfoservice.service.PokemonSoapService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,7 +11,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Collections;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)

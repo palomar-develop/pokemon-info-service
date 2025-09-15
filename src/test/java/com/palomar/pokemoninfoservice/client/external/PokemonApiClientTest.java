@@ -1,7 +1,7 @@
 package com.palomar.pokemoninfoservice.client.external;
 
 
-
+import com.palomar.pokemoninfoservice.client.external.impl.PokemonApiClientImpl;
 import com.palomar.pokemoninfoservice.client.model.PokemonResponse;
 import com.palomar.pokemoninfoservice.config.PokemonApiProperties;
 import com.palomar.pokemoninfoservice.exception.PokemonNotFoundException;
@@ -13,7 +13,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.web.client.RestTemplate;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 /**
  * Autor: josue.palomar
@@ -26,7 +27,7 @@ class PokemonApiClientTest {
     @Mock
     private PokemonApiProperties pokemonApiProperties;
     @InjectMocks
-    private PokemonApiClient pokemonApiClient;
+    private PokemonApiClientImpl pokemonApiClient;
 
 
     @Test

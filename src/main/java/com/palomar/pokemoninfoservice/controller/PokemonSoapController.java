@@ -1,12 +1,9 @@
 package com.palomar.pokemoninfoservice.controller;
 
 import com.palomar.pokemoninfoservice.model.dto.*;
-import com.palomar.pokemoninfoservice.service.PokemonSoapService;
+import com.palomar.pokemoninfoservice.service.PokemonService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ws.server.endpoint.annotation.Endpoint;
-import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
-import org.springframework.ws.server.endpoint.annotation.RequestPayload;
-import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
+import org.springframework.ws.server.endpoint.annotation.*;
 
 /**
  * Autor: josue.palomar
@@ -15,50 +12,57 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 @Endpoint
 public class PokemonSoapController {
 
-    private final PokemonSoapService pokemonSOAPService;
+    private final PokemonService pokemonService;
 
 
     @Autowired
-    public PokemonSoapController(PokemonSoapService pokemonApiService) {
-        this.pokemonSOAPService = pokemonApiService;
+    public PokemonSoapController(PokemonService pokemonApiService) {
+        this.pokemonService = pokemonApiService;
     }
 
     private static final String NAMESPACE_URI = "http://pokemon.com/soap";
 
+
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "AbilitiesRequest")
+    @Namespace(prefix="po",uri=NAMESPACE_URI)
     @ResponsePayload
-    public AbilitiesResponse handleAbilities(@RequestPayload AbilitiesRequest request) {
-        return  pokemonSOAPService.getAbilities(request);
+    public AbilitiesResponse handleAbilities(@XPathParam("/po:AbilitiesRequest/po:pokemonName") String pokemonName) {
+        return  pokemonService.getAbilities(pokemonName);
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "BaseExperienceRequest")
+    @Namespace(prefix="po",uri=NAMESPACE_URI)
     @ResponsePayload
-    public BaseExperienceResponse handleBaseExperience(@RequestPayload BaseExperienceRequest request) {
-        return pokemonSOAPService.getBaseExperience(request);
+    public BaseExperienceResponse handleBaseExperience(@XPathParam("/po:BaseExperienceRequest/po:pokemonName") String pokemonName) {
+        return pokemonService.getBaseExperience(pokemonName);
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "HeldItemRequest")
+    @Namespace(prefix="po",uri=NAMESPACE_URI)
     @ResponsePayload
-    public HeldItemResponse handleHeldItem(@RequestPayload HeldItemRequest request) {
-    return pokemonSOAPService.getHeldItem(request);
+    public HeldItemResponse handleHeldItem(@XPathParam("/po:HeldItemRequest/po:pokemonName") String pokemonName) {
+        return pokemonService.getHeldItem(pokemonName);
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "LocationAreaEncountersRequest")
+    @Namespace(prefix="po",uri=NAMESPACE_URI)
     @ResponsePayload
-    public LocationAreaEncountersResponse handleLocationAreaEncounters(@RequestPayload LocationAreaEncountersRequest request) {
-        return pokemonSOAPService.getLocationAreaEncounters(request);
+    public LocationAreaEncountersResponse handleLocationAreaEncounters(@XPathParam("/po:LocationAreaEncountersRequest/po:pokemonName") String pokemonName) {
+        return pokemonService.getLocationAreaEncounters(pokemonName);
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "NameRequest")
+    @Namespace(prefix="po",uri=NAMESPACE_URI)
     @ResponsePayload
-    public NameResponse handleName(@RequestPayload NameRequest request) {
-        return  pokemonSOAPService.getName(request);
+    public NameResponse handleName(@XPathParam("/po:NameRequest/po:pokemonName") String pokemonName) {
+        return  pokemonService.getName(pokemonName);
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "IdRequest")
+    @Namespace(prefix="po",uri=NAMESPACE_URI)
     @ResponsePayload
-    public IdResponse handleId(@RequestPayload IdRequest request) {
-        return  pokemonSOAPService.getId(request);
+    public IdResponse handleId(@XPathParam("/po:IdRequest/po:pokemonName") String pokemonName) {
+        return  pokemonService.getId(pokemonName);
     }
 
 

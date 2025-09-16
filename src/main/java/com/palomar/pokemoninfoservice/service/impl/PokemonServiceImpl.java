@@ -6,7 +6,7 @@ import com.palomar.pokemoninfoservice.model.dto.*;
 import com.palomar.pokemoninfoservice.model.entity.Bitacora;
 import com.palomar.pokemoninfoservice.service.BitacoraService;
 import com.palomar.pokemoninfoservice.service.PokemonApiService;
-import com.palomar.pokemoninfoservice.service.PokemonSoapService;
+import com.palomar.pokemoninfoservice.service.PokemonService;
 import com.palomar.pokemoninfoservice.utils.PokemonServiceConstants;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +22,7 @@ import java.util.function.Function;
  */
 @Service
 @Slf4j
-public class PokemonSoapServiceImpl implements PokemonSoapService {
+public class PokemonServiceImpl implements PokemonService {
 
     private final PokemonApiService pokemonApiService;
     private final BitacoraService bitacoraService;
@@ -34,20 +34,22 @@ public class PokemonSoapServiceImpl implements PokemonSoapService {
 
 
     @Autowired
-    public PokemonSoapServiceImpl(PokemonApiService pokemonApiService, BitacoraService bitacoraService) {
+    public PokemonServiceImpl(PokemonApiService pokemonApiService, BitacoraService bitacoraService) {
         this.pokemonApiService = pokemonApiService;
         this.bitacoraService = bitacoraService;
     }
+
     /***
      * Implementación del método para obtener las habilidades de un Pokémon por su nombre.
      *
-     * @param request La solicitud que contiene el nombre del Pokémon.
+     * @param pokemonName La solicitud que contiene el nombre del Pokémon.
      * @return La respuesta con las habilidades del Pokémon.
      */
     @Override
-    public AbilitiesResponse getAbilities(AbilitiesRequest request) {
-        return procesarConBitacora(PokemonServiceConstants.METHOD_ABILITIES, request, req -> {
-            PokemonResponse pokemon = pokemonApiService.getPokemonByName(req.getPokemonName());
+    public AbilitiesResponse getAbilities(String pokemonName) {
+
+        return procesarConBitacora(PokemonServiceConstants.METHOD_ABILITIES, pokemonName, req -> {
+            PokemonResponse pokemon = pokemonApiService.getPokemonByName(req);
             AbilitiesResponse response = new AbilitiesResponse();
             response.setAbilities(pokemon.getAbilities());
             return response;
@@ -56,14 +58,14 @@ public class PokemonSoapServiceImpl implements PokemonSoapService {
 
     /**
      * Implementación del método para obtener la experiencia base de un Pokémon por su nombre.
-     * @param request
+     * @param pokemonName
      * @return
      */
     @Override
-    public BaseExperienceResponse getBaseExperience(BaseExperienceRequest request) {
-        return procesarConBitacora(PokemonServiceConstants.METHOD_BASE_EXPERIENCE, request, req -> {
+    public BaseExperienceResponse getBaseExperience(String pokemonName) {
+        return procesarConBitacora(PokemonServiceConstants.METHOD_BASE_EXPERIENCE, pokemonName, req -> {
+            PokemonResponse pokemon = pokemonApiService.getPokemonByName(req);
             BaseExperienceResponse response = new BaseExperienceResponse();
-            PokemonResponse pokemon = pokemonApiService.getPokemonByName(request.getPokemonName());
             response.setBaseExperience(pokemon.getBaseExperience());
             return response;
         });
@@ -71,56 +73,59 @@ public class PokemonSoapServiceImpl implements PokemonSoapService {
 
     /**
      * Implementación del método para obtener los objetos que sostiene un Pokémon por su nombre.
-     * @param request
+     * @param pokemonName
      * @return
      */
     @Override
-    public HeldItemResponse getHeldItem(HeldItemRequest request) {
-        return procesarConBitacora(PokemonServiceConstants.METHOD_HELD_ITEM, request, req -> {
+    public HeldItemResponse getHeldItem(String pokemonName) {
+        return procesarConBitacora(PokemonServiceConstants.METHOD_HELD_ITEM, pokemonName, req -> {
+            PokemonResponse pokemon = pokemonApiService.getPokemonByName(req);
             HeldItemResponse response = new HeldItemResponse();
-            PokemonResponse pokemon = pokemonApiService.getPokemonByName(request.getPokemonName());
             response.setHeldItem(pokemon.getHeldItems());
             return response;
         });
     }
-    /**
+
+  /**
      * Implementación del método para obtener las áreas de encuentro de un Pokémon por su nombre.
-     * @param request
+     * @param pokemonName
      * @return
      */
     @Override
-    public LocationAreaEncountersResponse getLocationAreaEncounters(LocationAreaEncountersRequest request) {
-        return procesarConBitacora(PokemonServiceConstants.METHOD_LOCATION_AREA_ENCOUNTERS, request, req -> {
+    public LocationAreaEncountersResponse getLocationAreaEncounters(String pokemonName) {
+        return procesarConBitacora(PokemonServiceConstants.METHOD_LOCATION_AREA_ENCOUNTERS, pokemonName, req -> {
+            PokemonResponse pokemon = pokemonApiService.getPokemonByName(req);
             LocationAreaEncountersResponse response = new LocationAreaEncountersResponse();
-            PokemonResponse pokemon = pokemonApiService.getPokemonByName(request.getPokemonName());
             response.setLocationAreaEncounters(pokemon.getLocationAreaEncounters());
             return response;
         });
     }
+
     /**
      * Implementación del método para obtener el nombre de un Pokémon por su nombre.
-     * @param request
+     * @param pokemonName
      * @return
      */
     @Override
-    public NameResponse getName(NameRequest request) {
-        return procesarConBitacora(PokemonServiceConstants.METHOD_NAME, request, req -> {
+    public NameResponse getName(String pokemonName) {
+        return procesarConBitacora(PokemonServiceConstants.METHOD_NAME, pokemonName, req -> {
+            PokemonResponse pokemon = pokemonApiService.getPokemonByName(req);
             NameResponse response = new NameResponse();
-            PokemonResponse pokemon = pokemonApiService.getPokemonByName(request.getPokemonName());
             response.setName(pokemon.getName());
             return response;
         });
     }
+
     /**
      * Implementación del método para obtener el ID de un Pokémon por su nombre.
-     * @param request
+     * @param pokemonName
      * @return
      */
     @Override
-    public IdResponse getId(IdRequest request) {
-        return procesarConBitacora(PokemonServiceConstants.METHOD_ID, request, req -> {
+    public IdResponse getId(String pokemonName) {
+        return procesarConBitacora(PokemonServiceConstants.METHOD_ID, pokemonName, req -> {
+            PokemonResponse pokemon = pokemonApiService.getPokemonByName(req);
             IdResponse response = new IdResponse();
-            PokemonResponse pokemon = pokemonApiService.getPokemonByName(request.getPokemonName());
             response.setId(pokemon.getId());
             return response;
         });

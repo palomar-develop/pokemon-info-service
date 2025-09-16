@@ -2,7 +2,7 @@ package com.palomar.pokemoninfoservice.controller;
 
 import com.palomar.pokemoninfoservice.exception.PokemonNotFoundException;
 import com.palomar.pokemoninfoservice.model.dto.*;
-import com.palomar.pokemoninfoservice.service.PokemonSoapService;
+import com.palomar.pokemoninfoservice.service.PokemonService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -18,105 +18,89 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class PokemonSoapControllerTest {
     @Mock
-    private PokemonSoapService pokemonSOAPService;
+    private PokemonService pokemonService;
     @InjectMocks
     private PokemonSoapController pokemonSOAPController;
 
     @Test
     void handleAbilitiesReturnsAbilitiesResponse() {
-        AbilitiesRequest request = new AbilitiesRequest();
-        request.setPokemonName("pikachu");
+
+        String pokemonName = "pikachu";
         AbilitiesResponse responseExpected = new AbilitiesResponse();
         responseExpected.setAbilities(Collections.emptyList());
-        when(pokemonSOAPService.getAbilities(request)).thenReturn(responseExpected);
+        when(pokemonService.getAbilities(pokemonName)).thenReturn(responseExpected);
 
-        AbilitiesResponse response = pokemonSOAPController.handleAbilities(request);
+        AbilitiesResponse response = pokemonSOAPController.handleAbilities(pokemonName);
         assertEquals(Collections.emptyList(), response.getAbilities());
-        verify(pokemonSOAPService, times(1)).getAbilities(request);
+        verify(pokemonService, times(1)).getAbilities(pokemonName);
     }
 
     @Test
     void handleBaseExperienceReturnsBaseExperienceResponse() {
-        BaseExperienceRequest request = new BaseExperienceRequest();
-        request.setPokemonName("pikachu");
-
+        String pokemonName = "pikachu";
         BaseExperienceResponse responseExpected = new BaseExperienceResponse();
         responseExpected.setBaseExperience(112);
+        when(pokemonService.getBaseExperience(pokemonName)).thenReturn(responseExpected);
 
-        when(pokemonSOAPService.getBaseExperience(request)).thenReturn(responseExpected);
-
-        BaseExperienceResponse response = pokemonSOAPController.handleBaseExperience(request);
+        BaseExperienceResponse response = pokemonSOAPController.handleBaseExperience(pokemonName);
         assertEquals(112, response.getBaseExperience());
-        verify(pokemonSOAPService, times(1)).getBaseExperience(request);
+        verify(pokemonService, times(1)).getBaseExperience(pokemonName);
     }
 
     @Test
     void handleHeldItemReturnsHeldItemResponse() {
-        HeldItemRequest request = new HeldItemRequest();
-        request.setPokemonName("pikachu");
-
+        String pokemonName = "pikachu";
         HeldItemResponse responseMock = new HeldItemResponse();
         responseMock.setHeldItem(Collections.emptyList());
+        when(pokemonService.getHeldItem(pokemonName)).thenReturn(responseMock);
 
-        when(pokemonSOAPService.getHeldItem(request)).thenReturn(responseMock);
-
-        HeldItemResponse response = pokemonSOAPController.handleHeldItem(request);
+        HeldItemResponse response = pokemonSOAPController.handleHeldItem(pokemonName);
         assertEquals(Collections.emptyList(), response.getHeldItem());
-        verify(pokemonSOAPService, times(1)).getHeldItem(request);
+        verify(pokemonService, times(1)).getHeldItem(pokemonName);
     }
 
     @Test
     void handleLocationAreaEncountersReturnsLocationAreaEncountersResponse() {
-        LocationAreaEncountersRequest request = new LocationAreaEncountersRequest();
-        request.setPokemonName("pikachu");
-
+        String pokemonName = "pikachu";
         LocationAreaEncountersResponse responseMock = new LocationAreaEncountersResponse();
         responseMock.setLocationAreaEncounters("test-location");
+        when(pokemonService.getLocationAreaEncounters(pokemonName)).thenReturn(responseMock);
 
-        when(pokemonSOAPService.getLocationAreaEncounters(request)).thenReturn(responseMock);
-
-        LocationAreaEncountersResponse response = pokemonSOAPController.handleLocationAreaEncounters(request);
+        LocationAreaEncountersResponse response = pokemonSOAPController.handleLocationAreaEncounters(pokemonName);
         assertEquals("test-location", response.getLocationAreaEncounters());
-        verify(pokemonSOAPService, times(1)).getLocationAreaEncounters(request);
+        verify(pokemonService, times(1)).getLocationAreaEncounters(pokemonName);
     }
 
     @Test
     void handleNameReturnsNameResponse() {
-        NameRequest request = new NameRequest();
-        request.setPokemonName("pikachu");
-
+        String pokemonName = "pikachu";
         NameResponse responseMock = new NameResponse();
         responseMock.setName("pikachu");
+        when(pokemonService.getName(pokemonName)).thenReturn(responseMock);
 
-        when(pokemonSOAPService.getName(request)).thenReturn(responseMock);
-
-        NameResponse response = pokemonSOAPController.handleName(request);
+        NameResponse response = pokemonSOAPController.handleName(pokemonName);
         assertEquals("pikachu", response.getName());
-        verify(pokemonSOAPService, times(1)).getName(request);
+        verify(pokemonService, times(1)).getName(pokemonName);
     }
 
     @Test
     void handleIdReturnsIdResponse() {
-        IdRequest request = new IdRequest();
-        request.setPokemonName("pikachu");
-
+        String pokemonName = "pikachu";
         IdResponse responseMock = new IdResponse();
         responseMock.setId(25);
+        when(pokemonService.getId(pokemonName)).thenReturn(responseMock);
 
-        when(pokemonSOAPService.getId(request)).thenReturn(responseMock);
-
-        IdResponse response = pokemonSOAPController.handleId(request);
+        IdResponse response = pokemonSOAPController.handleId(pokemonName);
         assertEquals(25, response.getId());
-        verify(pokemonSOAPService, times(1)).getId(request);
+        verify(pokemonService, times(1)).getId(pokemonName);
     }
 
     @Test
     void handleAbilitiesWhenNotFoundThrowsException() {
-        AbilitiesRequest request = new AbilitiesRequest();
-        request.setPokemonName("missingno");
-        when(pokemonSOAPService.getAbilities(request)).thenThrow(new PokemonNotFoundException("No se encontró el pokemon: missingno"));
+        String pokemonName = "missingno";
+        when(pokemonService.getAbilities(pokemonName)).thenThrow(new PokemonNotFoundException("No se encontró el pokemon: missingno"));
 
-        assertThrows(PokemonNotFoundException.class, () -> pokemonSOAPController.handleAbilities(request));
-        verify(pokemonSOAPService, times(1)).getAbilities(request);
+        assertThrows(PokemonNotFoundException.class, () -> pokemonSOAPController.handleAbilities(pokemonName));
+        verify(pokemonService, times(1)).getAbilities(pokemonName);
     }
 }

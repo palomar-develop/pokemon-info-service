@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @CucumberContextConfiguration
 @SpringBootTest
 public class PokemonSteps {
-    private String namePokemon;
+    private String pokemonName;
     private PokemonResponse response;
     private NameResponse  nameResponse;
     private AbilitiesResponse abilitiesResponse;
@@ -40,13 +40,13 @@ public class PokemonSteps {
 
     @Given("El nombre del pokemon es {string}")
     public void nombrePokemonAPI(String nombre) {
-        this.namePokemon = nombre;
+        this.pokemonName = nombre;
     }
 
     @When("Consulta el nombre del pokemon")
     public void consultaNombrePokemonAPI() {
         // Simulación, en tests reales usar mock
-        response = service.getPokemonByName(namePokemon);
+        response = service.getPokemonByName(pokemonName);
 
     }
     @Then("El resultado debe ser {string}")
@@ -57,9 +57,7 @@ public class PokemonSteps {
     //@Cuando("consulto el pokemon por SOAP")
     @When("Consulta el nombre pokemon por nombre pokemon")
     public void consultaNombrePokemonPorNombrePokemon() {
-         NameRequest request = new NameRequest();
-         request.setPokemonName(namePokemon);
-        nameResponse = pokemonSOAPController.handleName(request);
+        nameResponse = pokemonSOAPController.handleName(pokemonName);
     }
 
     @Then("El resultado nombre pokemon por nombre pokemon {string}")
@@ -68,9 +66,7 @@ public class PokemonSteps {
     }
     @When("Consulta el Id pokemon por nombre pokemon")
     public void consultaIdPokemonPorNombrePokemon() {
-        IdRequest request = new IdRequest();
-        request.setPokemonName(namePokemon);
-        idResponse = pokemonSOAPController.handleId(request);
+        idResponse = pokemonSOAPController.handleId(pokemonName);
     }
 
     @Then("El resultado Id pokemon por nombre pokemon {int}")
@@ -80,9 +76,7 @@ public class PokemonSteps {
 
     @When("Consulta el baseExperience pokemon por nombre pokemon")
     public void consultaBaseExperiencePokemonPorNombrePokemon() {
-        BaseExperienceRequest request = new BaseExperienceRequest();
-        request.setPokemonName(namePokemon);
-        baseExperienceResponse = pokemonSOAPController.handleBaseExperience(request);
+        baseExperienceResponse = pokemonSOAPController.handleBaseExperience(pokemonName);
     }
 
     @Then("El resultado baseExperience pokemon por nombre pokemon {int}")
@@ -93,10 +87,7 @@ public class PokemonSteps {
 
     @When("Consulta el Abilities pokemon por nombre pokemon")
     public void consultaElAbilitiesPokemonPorNombrePokemon() {
-        // Aquí deberías llamar al servicio o controlador real
-        AbilitiesRequest abilitiesRequest = new AbilitiesRequest();
-        abilitiesRequest.setPokemonName(namePokemon);
-        abilitiesResponse = pokemonSOAPController.handleAbilities(abilitiesRequest);
+        abilitiesResponse = pokemonSOAPController.handleAbilities(pokemonName);
     }
 
     @Then("El resultado Abilities pokemon por nombre pokemon")
@@ -111,9 +102,7 @@ public class PokemonSteps {
     @When("Consulta el HeldItems pokemon por nombre pokemon")
     public void consultaHeldItemsPokemonPorNombrePokemon() {
         // Aquí deberías llamar al servicio o controlador real
-        HeldItemRequest heldItemsRequest = new HeldItemRequest();
-        heldItemsRequest.setPokemonName(namePokemon);
-        heldItemsResponse = pokemonSOAPController.handleHeldItem(heldItemsRequest);
+        heldItemsResponse = pokemonSOAPController.handleHeldItem(pokemonName);
     }
 
     @Then("El resultado HeldItems pokemon por nombre pokemon")
@@ -127,9 +116,7 @@ public class PokemonSteps {
 
     @When("Consulta el locationAreaEncounters pokemon por nombre pokemon")
     public void consultalocationAreaEncountersPokemonPorNombrePokemon() {
-        LocationAreaEncountersRequest request = new LocationAreaEncountersRequest();
-        request.setPokemonName(namePokemon);
-        locationAreaEncountersResponse = pokemonSOAPController.handleLocationAreaEncounters(request);
+        locationAreaEncountersResponse = pokemonSOAPController.handleLocationAreaEncounters(pokemonName);
     }
 
     @Then("El resultado locationAreaEncounters pokemon por nombre pokemon {string}")

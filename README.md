@@ -47,3 +47,40 @@ mvn clean package
   ```
 
 ---
+
+## Documentación de Calidad y Pruebas
+
+### Reporte de Pruebas Unitarias (JUnit)
+
+- El reporte generado por JUnit se encuentra en:
+  - [`doc/Pruebas_JUnit/pokemon-info-service – Surefire Report.pdf`](doc/Pruebas_JUnit/pokemon-info-service%20–%20Surefire%20Report.pdf)
+
+### Reporte de Pruebas de Integración (Cucumber)
+
+- El reporte generado por Cucumber se encuentra en:
+  - [`doc/Pruebas_Cucumber/Reporte_Cucumber.pdf`](doc/Pruebas_Cucumber/Reporte_Cucumber.pdf)
+
+### Reporte de Calidad de Código (SonarQube)
+
+- El reporte de análisis de calidad SonarQube se encuentra en:
+  - [`doc/Evidencia_Sonar/pokemon-info-service_sonar.pdf`](doc/Evidencia_Sonar/pokemon-info-service_sonar.pdf)
+
+
+## Diagrama Entidad-Relación (ER)
+
+El diagrama ER de las entidades del servicio se encuentra en:
+
+- [`doc/ER/pokemon-info-service_ER.pdf`](doc/ER/pokemon-info-service_ER.pdf)
+
+También puedes visualizarlo como imagen:
+
+- ![Diagrama ER](doc/ER/pokemon-info-service_ER.png)
+
+---
+## Documentación de Endpoints
+
+Una vez levantado el proyecto, puedes acceder a:
+
+- **Swagger UI (REST):** [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
+- **WSDL (SOAP):** [http://localhost:8080/ws/pokemon.wsdl](http://localhost:8080/ws/pokemon.wsdl)
+

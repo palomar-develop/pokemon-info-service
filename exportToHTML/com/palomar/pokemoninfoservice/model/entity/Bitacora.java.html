@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>Bitacora.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Bitacora.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span class="s1">palomar</span><span class="s2">.</span><span class="s1">pokemoninfoservice</span><span class="s2">.</span><span class="s1">model</span><span class="s2">.</span><span class="s1">entity</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">fasterxml</span><span class="s2">.</span><span class="s1">jackson</span><span class="s2">.</span><span class="s1">annotation</span><span class="s2">.</span><span class="s1">JsonProperty</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">jakarta</span><span class="s2">.</span><span class="s1">persistence</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">lombok</span><span class="s2">.*;</span>
+
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">time</span><span class="s2">.</span><span class="s1">LocalDateTime</span><span class="s2">;</span>
+
+<span class="s1">@Entity</span>
+<span class="s1">@Setter</span>
+<span class="s1">@Getter</span>
+<span class="s1">@NoArgsConstructor</span>
+<span class="s1">@AllArgsConstructor</span>
+<span class="s0">public class </span><span class="s1">Bitacora </span><span class="s2">{</span>
+    <span class="s1">@Id</span>
+    <span class="s1">@GeneratedValue</span><span class="s2">(</span><span class="s1">strategy </span><span class="s2">= </span><span class="s1">GenerationType</span><span class="s2">.</span><span class="s1">IDENTITY</span><span class="s2">)</span>
+    <span class="s0">private </span><span class="s1">Long id</span><span class="s2">;</span>
+
+    <span class="s1">@JsonProperty</span><span class="s2">(</span><span class="s3">&quot;ip_origen&quot;</span><span class="s2">)</span>
+    <span class="s0">private </span><span class="s1">String ipOrigen</span><span class="s2">;</span>
+
+    <span class="s1">@JsonProperty</span><span class="s2">(</span><span class="s3">&quot;fecha_request&quot;</span><span class="s2">)</span>
+    <span class="s0">private </span><span class="s1">LocalDateTime fechaRequest</span><span class="s2">;</span>
+
+    <span class="s0">private </span><span class="s1">String metodo</span><span class="s2">;</span>
+
+    <span class="s1">@Column</span><span class="s2">(</span><span class="s1">columnDefinition </span><span class="s2">= </span><span class="s3">&quot;TEXT&quot;</span><span class="s2">)</span>
+    <span class="s0">private </span><span class="s1">String request</span><span class="s2">;</span>
+
+    <span class="s1">@JsonProperty</span><span class="s2">(</span><span class="s3">&quot;tiempo_peticion&quot;</span><span class="s2">)</span>
+    <span class="s0">private </span><span class="s1">Long tiempoPeticion</span><span class="s2">;</span>
+
+    <span class="s1">@Column</span><span class="s2">(</span><span class="s1">columnDefinition </span><span class="s2">= </span><span class="s3">&quot;TEXT&quot;</span><span class="s2">)</span>
+    <span class="s0">private </span><span class="s1">String response</span><span class="s2">;</span>
+<span class="s2">}</span>
+
+</pre>
+</body>
+</html>

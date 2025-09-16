@@ -1,11 +1,13 @@
 package com.palomar.pokemoninfoservice.interceptor;
 
-import org.springframework.ws.server.EndpointInterceptor;
-import org.springframework.ws.context.MessageContext;
+import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.ws.context.MessageContext;
+import org.springframework.ws.server.EndpointInterceptor;
 
+@Slf4j
 public class SoapIpInterceptor implements EndpointInterceptor {
     @Override
     public boolean handleRequest(MessageContext messageContext, Object endpoint) throws Exception {
@@ -17,10 +19,10 @@ public class SoapIpInterceptor implements EndpointInterceptor {
             if (clientIp == null || clientIp.isEmpty()) {
                 clientIp = request.getRemoteAddr();
             }
-            System.out.println("IP de origen SOAP: " + clientIp);
+            log.debug("IP de origen SOAP: " + clientIp);
             request.setAttribute("clientIp", clientIp);
         } else {
-            System.out.println("No se pudo obtener HttpServletRequest desde el contexto de Spring");
+            log.debug("No se pudo obtener HttpServletRequest desde el contexto de Spring");
         }
         return true;
     }
@@ -30,5 +32,5 @@ public class SoapIpInterceptor implements EndpointInterceptor {
     @Override
     public boolean handleFault(MessageContext messageContext, Object endpoint) { return true; }
     @Override
-    public void afterCompletion(MessageContext messageContext, Object endpoint, Exception ex) {}
+    public void afterCompletion(MessageContext messageContext, Object endpoint, Exception ex) {log.debug("Completado");}
 }

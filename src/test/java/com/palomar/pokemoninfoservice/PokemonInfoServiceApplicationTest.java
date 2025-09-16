@@ -5,6 +5,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class PokemonInfoServiceApplicationTest {
-
+    @Test
+    void contextLoads() {
+        // Verifica que el contexto de Spring Boot se carga correctamente
+    }
 }
 

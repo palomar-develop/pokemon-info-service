@@ -1,6 +1,5 @@
 package com.palomar.pokemoninfoservice.client.model;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -27,41 +27,41 @@ public class PokemonController {
 
 
     @Operation(summary = "Obtener habilidades de un Pokémon", description = "Devuelve las habilidades del Pokémon consultado")
-    @GetMapping("/abilities/{pokemonName}")
+    @GetMapping("/{pokemonName}/abilities")
     public ResponseEntity<AbilitiesResponse> getAbilities(@PathVariable String pokemonName) {
         AbilitiesResponse abilitiesResponse = pokemonService.getAbilities(pokemonName);
         return ResponseEntity.ok(abilitiesResponse);
     }
 
     @Operation(summary = "Obtener experiencia base de un Pokémon", description = "Devuelve la experiencia base del Pokémon consultado")
-    @GetMapping("/base-experience/{pokemonName}")
+    @GetMapping("/{pokemonName}/base-experience")
     public ResponseEntity<BaseExperienceResponse> getBaseExperience(@PathVariable String pokemonName) {
         BaseExperienceResponse baseExperienceResponse = pokemonService.getBaseExperience(pokemonName);
         return ResponseEntity.ok(baseExperienceResponse);
     }
 
     @Operation(summary = "Obtener objetos que sostiene un Pokémon", description = "Devuelve los objetos que sostiene el Pokémon consultado")
-    @GetMapping("/held-items/{pokemonName}")
+    @GetMapping("/{pokemonName}/held-items")
     public ResponseEntity<HeldItemResponse> getHeldItem(@PathVariable String pokemonName) {
         return ResponseEntity.ok(pokemonService.getHeldItem(pokemonName));
     }
 
     @Operation(summary = "Obtener áreas de encuentro de un Pokémon", description = "Devuelve las áreas de encuentro del Pokémon consultado")
-    @GetMapping("/location-area-encounters/{pokemonName}")
+    @GetMapping("/{pokemonName}/location-area-encounters")
     public ResponseEntity<LocationAreaEncountersResponse> getLocationAreaEncounters(@PathVariable String pokemonName) {
         LocationAreaEncountersResponse response = pokemonService.getLocationAreaEncounters(pokemonName);
         return ResponseEntity.ok(response);
     }
 
     @Operation(summary = "Obtener nombre de un Pokémon", description = "Devuelve el nombre del Pokémon consultado")
-    @GetMapping("/name/{pokemonName}")
+    @GetMapping("/{pokemonName}/name")
     public ResponseEntity<NameResponse> getName(@PathVariable String pokemonName) {
         NameResponse nameResponse = pokemonService.getName(pokemonName);
         return ResponseEntity.ok(nameResponse);
     }
 
     @Operation(summary = "Obtener ID de un Pokémon", description = "Devuelve el ID del Pokémon consultado")
-    @GetMapping("/id/{pokemonName}")
+    @GetMapping("/{pokemonName}/id")
     public ResponseEntity<IdResponse> getId(@PathVariable String pokemonName) {
         IdResponse idResponse = pokemonService.getId(pokemonName);
         return ResponseEntity.ok(idResponse);

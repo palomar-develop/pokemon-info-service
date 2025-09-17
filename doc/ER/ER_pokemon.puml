@@ -1,0 +1,11 @@
+@startuml
+class bitacora {
+  Long id
+  String ipOrigen
+  LocalDateTime fechaRequest
+  String metodo
+  String request
+  Long tiempoPeticion
+  String response
+}
+@enduml

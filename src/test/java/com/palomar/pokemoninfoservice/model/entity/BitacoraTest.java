@@ -1,5 +1,6 @@
 package com.palomar.pokemoninfoservice.model.entity;
 
+import com.palomar.pokemoninfoservice.domain.model.Bitacora;
 import org.junit.jupiter.api.Test;
 import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.*;

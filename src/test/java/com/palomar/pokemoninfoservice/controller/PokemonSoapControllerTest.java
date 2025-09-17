@@ -1,8 +1,11 @@
 package com.palomar.pokemoninfoservice.controller;
 
-import com.palomar.pokemoninfoservice.exception.PokemonNotFoundException;
-import com.palomar.pokemoninfoservice.model.dto.*;
-import com.palomar.pokemoninfoservice.service.PokemonService;
+import com.palomar.pokemoninfoservice.domain.model.dto.*;
+import com.palomar.pokemoninfoservice.infrastructure.exception.PokemonNotFoundException;
+import com.palomar.pokemoninfoservice.infrastructure.adapter.in.soap.PokemonSoapController;
+import com.palomar.pokemoninfoservice.infrastructure.exception.PokemonNotFoundException;
+import com.palomar.pokemoninfoservice.domain.port.in.PokemonService;
+import com.palomar.pokemoninfoservice.infrastructure.adapter.in.soap.PokemonSoapController;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -13,6 +16,9 @@ import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.xpath;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)

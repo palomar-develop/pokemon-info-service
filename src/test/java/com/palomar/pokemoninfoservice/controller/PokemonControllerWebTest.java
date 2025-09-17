@@ -1,12 +1,14 @@
 package com.palomar.pokemoninfoservice.controller;
 
-import com.palomar.pokemoninfoservice.model.dto.AbilitiesResponse;
-import com.palomar.pokemoninfoservice.model.dto.BaseExperienceResponse;
-import com.palomar.pokemoninfoservice.model.dto.HeldItemResponse;
-import com.palomar.pokemoninfoservice.model.dto.LocationAreaEncountersResponse;
-import com.palomar.pokemoninfoservice.model.dto.NameResponse;
-import com.palomar.pokemoninfoservice.model.dto.IdResponse;
-import com.palomar.pokemoninfoservice.service.PokemonService;
+import com.palomar.pokemoninfoservice.domain.model.dto.AbilitiesResponse;
+import com.palomar.pokemoninfoservice.domain.model.dto.BaseExperienceResponse;
+import com.palomar.pokemoninfoservice.domain.model.dto.HeldItemResponse;
+import com.palomar.pokemoninfoservice.domain.model.dto.LocationAreaEncountersResponse;
+import com.palomar.pokemoninfoservice.domain.model.dto.NameResponse;
+import com.palomar.pokemoninfoservice.domain.model.dto.IdResponse;
+import com.palomar.pokemoninfoservice.domain.port.in.PokemonService;
+import com.palomar.pokemoninfoservice.infrastructure.adapter.in.rest.PokemonController;
+import com.palomar.pokemoninfoservice.infrastructure.adapter.in.rest.PokemonController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;

@@ -1,11 +1,11 @@
 package com.palomar.pokemoninfoservice.client.external;
 
 
-import com.palomar.pokemoninfoservice.client.external.impl.PokemonApiClientImpl;
-import com.palomar.pokemoninfoservice.client.model.PokemonResponse;
-import com.palomar.pokemoninfoservice.config.PokemonApiProperties;
-import com.palomar.pokemoninfoservice.exception.PokemonNotFoundException;
-import com.palomar.pokemoninfoservice.utils.Constants;
+import com.palomar.pokemoninfoservice.infrastructure.adapter.out.api.client.external.impl.PokemonApiClientImpl;
+import com.palomar.pokemoninfoservice.infrastructure.adapter.out.api.client.model.PokemonResponse;
+import com.palomar.pokemoninfoservice.infrastructure.config.PokemonApiProperties;
+import com.palomar.pokemoninfoservice.infrastructure.exception.PokemonNotFoundException;
+import com.palomar.pokemoninfoservice.infrastructure.utils.Constants;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

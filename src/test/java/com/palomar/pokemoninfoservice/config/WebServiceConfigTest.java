@@ -1,6 +1,6 @@
 package com.palomar.pokemoninfoservice.config;
 
-import com.palomar.pokemoninfoservice.exception.PokemonNotFoundException;
+import com.palomar.pokemoninfoservice.infrastructure.config.WebServiceConfig;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.ws.soap.server.endpoint.SoapFaultMappingExceptionResolver;

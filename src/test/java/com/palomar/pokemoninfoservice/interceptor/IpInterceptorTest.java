@@ -1,5 +1,6 @@
 package com.palomar.pokemoninfoservice.interceptor;
 
+import com.palomar.pokemoninfoservice.infrastructure.interceptor.IpInterceptor;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.junit.jupiter.api.Test;

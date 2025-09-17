@@ -1,0 +1,27 @@
+package com.palomar.pokemoninfoservice.application.service.impl;
+
+import com.palomar.pokemoninfoservice.infrastructure.adapter.out.api.client.external.PokemonApiClient;
+import com.palomar.pokemoninfoservice.infrastructure.adapter.out.api.client.model.PokemonResponse;
+import com.palomar.pokemoninfoservice.domain.port.out.PokemonApiService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class PokemonApiServiceImpl implements PokemonApiService {
+    private final PokemonApiClient pokeApiClient;
+
+    @Autowired
+    public PokemonApiServiceImpl(PokemonApiClient pokeApiClient) {
+        this.pokeApiClient = pokeApiClient;
+    }
+    /**
+     * Llama al cliente para obtener la información del Pokémon por nombre.
+     *
+     * @param name El nombre del Pokémon.
+     * @return La respuesta con la información del Pokémon.
+     */
+    @Override
+    public PokemonResponse getPokemonByName(String name) {
+        return pokeApiClient.getPokemonByName(name);
+    }
+}

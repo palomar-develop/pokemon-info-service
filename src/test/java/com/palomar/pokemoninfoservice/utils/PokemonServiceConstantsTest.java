@@ -1,5 +1,6 @@
 package com.palomar.pokemoninfoservice.utils;
 
+import com.palomar.pokemoninfoservice.infrastructure.utils.PokemonServiceConstants;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Constructor;

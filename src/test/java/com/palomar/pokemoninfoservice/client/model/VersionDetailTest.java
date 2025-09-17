@@ -1,5 +1,7 @@
 package com.palomar.pokemoninfoservice.client.model;
 
+import com.palomar.pokemoninfoservice.infrastructure.adapter.out.api.client.model.Version;
+import com.palomar.pokemoninfoservice.infrastructure.adapter.out.api.client.model.VersionDetail;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

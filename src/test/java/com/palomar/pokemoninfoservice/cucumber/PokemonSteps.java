@@ -1,9 +1,9 @@
 package com.palomar.pokemoninfoservice.cucumber;
 
-import com.palomar.pokemoninfoservice.client.model.PokemonResponse;
-import com.palomar.pokemoninfoservice.controller.PokemonSoapController;
-import com.palomar.pokemoninfoservice.model.dto.*;
-import com.palomar.pokemoninfoservice.service.PokemonApiService;
+import com.palomar.pokemoninfoservice.infrastructure.adapter.out.api.client.model.PokemonResponse;
+import com.palomar.pokemoninfoservice.infrastructure.adapter.in.soap.PokemonSoapController;
+import com.palomar.pokemoninfoservice.domain.model.dto.*;
+import com.palomar.pokemoninfoservice.domain.port.out.PokemonApiService;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;

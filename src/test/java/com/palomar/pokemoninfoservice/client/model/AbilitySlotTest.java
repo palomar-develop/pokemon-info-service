@@ -1,5 +1,7 @@
 package com.palomar.pokemoninfoservice.client.model;
 
+import com.palomar.pokemoninfoservice.infrastructure.adapter.out.api.client.model.Ability;
+import com.palomar.pokemoninfoservice.infrastructure.adapter.out.api.client.model.AbilitySlot;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

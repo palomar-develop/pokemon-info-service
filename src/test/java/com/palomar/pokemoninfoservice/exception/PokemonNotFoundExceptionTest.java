@@ -1,5 +1,6 @@
 package com.palomar.pokemoninfoservice.exception;
 
+import com.palomar.pokemoninfoservice.infrastructure.exception.PokemonNotFoundException;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

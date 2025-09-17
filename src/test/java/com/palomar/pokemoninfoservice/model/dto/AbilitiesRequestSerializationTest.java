@@ -1,6 +1,7 @@
 package com.palomar.pokemoninfoservice.model.dto;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.palomar.pokemoninfoservice.domain.model.dto.AbilitiesRequest;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

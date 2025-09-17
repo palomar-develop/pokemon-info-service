@@ -1,5 +1,6 @@
 package com.palomar.pokemoninfoservice.model.dto;
 
+import com.palomar.pokemoninfoservice.domain.model.dto.HeldItemResponse;
 import org.junit.jupiter.api.Test;
 import java.util.Collections;
 import static org.junit.jupiter.api.Assertions.*;

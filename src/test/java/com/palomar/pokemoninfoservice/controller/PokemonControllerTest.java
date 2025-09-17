@@ -1,7 +1,8 @@
 package com.palomar.pokemoninfoservice.controller;
 
-import com.palomar.pokemoninfoservice.model.dto.*;
-import com.palomar.pokemoninfoservice.service.PokemonService;
+import com.palomar.pokemoninfoservice.domain.model.dto.*;
+import com.palomar.pokemoninfoservice.domain.port.in.PokemonService;
+import com.palomar.pokemoninfoservice.infrastructure.adapter.in.rest.PokemonController;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -87,4 +88,3 @@ class PokemonControllerTest {
         verify(pokemonService, times(1)).getId(pokemonName);
     }
 }
-
